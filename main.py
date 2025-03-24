@@ -33,6 +33,7 @@ def index():
         return f"Shortened URL: {request.url_root}{short_url}"
     return render_template("index.html")     #  if mmethod is not POST => method = GET, then just render/run wtv is in index.html file => basically load the html page
 
+# goes to the shortened url ==> which is basically the localhost:5000/<short_url>  => has to be mapped to the original url for redirection
 @app.route("/<short_url>")
 def redirect_url(short_url):
     long_url = shortened_urls.get(short_url)
