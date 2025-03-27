@@ -11,6 +11,7 @@ import string
 from flask import Flask, render_template, redirect, request
 
 app = Flask (__name__)
+
 shortened_urls = {}
 
 def generate_short_url(length=6):    #specify short url length -- default=6
