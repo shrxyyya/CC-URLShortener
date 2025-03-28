@@ -15,19 +15,6 @@ Ensure you have the following installed on your system:
 
 ---
 
-## **Project Structure**
-├── .env                            # Environment variables (MySQL credentials)
-├── Dockerfile                      # Docker configuration for Flask
-├── main.py                         # Flask application logic
-├── requirements.txt                # Python dependencies
-├── url_shortener_db_3307.sql       # SQL script to create database & table
-├── templates/                      # HTML templates for frontend
-│ ├── index.html                    # Home page for URL input
-│ ├── result.html                   # Page to display short URL
-└── README.md                       # Documentation
-
----
-
 ## **How to Run the Application using Docker**
 
 ### **Step 1: Clone the Repository**
