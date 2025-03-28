@@ -1,1 +1,107 @@
-# CC-URLShortener
+# Flask URL Shortener with MySQL (Dockerized)
+
+This is a simple **URL Shortener** built using **Flask** and **MySQL**. It allows users to shorten long URLs and retrieve the original URLs using a unique short code.
+
+## **Features**
+- Shorten long URLs into a compact format
+- Store and retrieve URLs using MySQL
+- Use **Docker** to run both Flask and MySQL containers seamlessly
+
+---
+
+## **Prerequisites**
+Ensure you have the following installed on your system:
+- **Docker**: [Download and install Docker](https://www.docker.com/get-started)
+
+---
+
+## **Project Structure**
+├── .env                            # Environment variables (MySQL credentials)
+├── Dockerfile                      # Docker configuration for Flask
+├── main.py                         # Flask application logic
+├── requirements.txt                # Python dependencies
+├── url_shortener_db_3307.sql       # SQL script to create database & table
+├── templates/                      # HTML templates for frontend
+│ ├── index.html                    # Home page for URL input
+│ ├── result.html                   # Page to display short URL
+└── README.md                       # Documentation
+
+---
+
+## **How to Run the Application using Docker**
+
+### **Step 1: Clone the Repository**
+```sh
+git clone https://github.com/yourusername/url-shortener.git
+cd url-shortener
+```
+
+### **Step 2: Configure Environment Variables**
+Modify the .env file with your MySQL credentials:
+```sh
+MYSQL_HOST=mysql-container
+MYSQL_USER=root
+MYSQL_PASSWORD=""
+MYSQL_DATABASE=url_shortener
+```
+Docker containers communicate via container names, so we use mysql-container instead of localhost.
+For docker, the host is set to 'mysql-container' which is the name of the MySQL container.
+For local development, you can set it to 'localhost' or the appropriate host for your MySQL server.
+
+### **Step 3: Build the Docker Image**
+```sh
+docker build -t flask-url-shortener .
+```
+Uses the Dockerfile to create an image for Flask application.
+Installs dependencies from requirements.txt.
+Exposes Flask on port 5000.
+
+### **Step 4: Start the MySQL Container**
+```sh
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD="" -e MYSQL_DATABASE=url_shortener -p 3306:3306 -d mysql:latest
+```
+Creates a MySQL docker container named mysql-container.
+Sets the root password.
+Automatically creates a database url_shortener.
+Runs MySQL in the background (-d).
+
+### **Step 5: Run Database Migration**
+```sh
+docker exec -i mysql-container mysql -u root -p "had%CYM3#schcs" url_shortener < url_shortener_db.sql
+```
+Executes the url_shortener_db.sql file to create the necessary database table
+
+### **Step 6: Run the Flask Application**
+```sh
+docker run --name url-shortener-container --link mysql-container -p 5000:5000 -d flask-url-shortener
+```
+Runs the Flask app in a container.
+Links it to mysql-container to enable database access.
+Maps port 5000 of the container to 5000 on your machine.
+
+### **Step 7: Verify Running Containers**
+Check if both containers are running:
+```sh
+docker ps
+```
+
+### **Step 8: Access the Application**
+Open your browser and go to:
+```sh
+http://localhost:5000
+```
+You should see the homepage where you can enter a long URL to shorten.
+
+---
+
+## **Stopping and Removing Containers**
+If you need to stop and remove the containers:
+```sh
+docker stop url-shortener-container mysql-container
+docker rm url-shortener-container mysql-container
+```
+
+To remove the Docker image:
+```sh
+docker rmi flask-url-shortener
+```

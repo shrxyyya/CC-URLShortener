@@ -5,24 +5,29 @@
 # <short_code> will be the code generated => has random letters + numbers => use Sqids for this
 # the short url is to then redirect the user to the original url
 
+# since we are running the mysql docker container on port 3307, make sure we have a mysql server created on port 3307
+# and the database name is url_shortener
 
 import os
 from dotenv import load_dotenv
-
 import mysql.connector
-
 from flask import Flask, render_template, redirect, request
 from sqids import Sqids
 
+# load environment variables
 load_dotenv()
 
 app = Flask(__name__)
 
+# Database configuration using environment variables for security
+# This allows us to use our database credentials in a .env file instead of hardcoding them in our script.
+# For docker, the host is set to 'mysql-container' which is the name of the MySQL container
+# For local development, you can set it to 'localhost' or the appropriate host for your MySQL server.
 db_config = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': 'had%CYM3#schcs',
-    'database': 'url_shortener',
+    'host': os.getenv('MYSQL_HOST', 'mysql-container'),
+    'user': os.getenv('MYSQL_USER', 'root'),
+    'password': os.getenv('MYSQL_PASSWORD', 'your_password'),
+    'database': os.getenv('MYSQL_DATABASE', 'url_shortener'),
     'auth_plugin': 'mysql_native_password'
 }
 
