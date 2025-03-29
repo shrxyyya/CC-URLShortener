@@ -5,7 +5,7 @@ This is a simple **URL Shortener** built using **Flask** and **MySQL**. It allow
 ## **Features**
 - Shorten long URLs into a compact format
 - Store and retrieve URLs using MySQL
-- Use **Docker Compose** to run both Flask and MySQL containers seamlessly
+- Use **Docker / Docker Compose** to run both Flask and MySQL containers seamlessly
 
 ---
 
