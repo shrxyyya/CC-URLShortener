@@ -5,17 +5,18 @@ This is a simple **URL Shortener** built using **Flask** and **MySQL**. It allow
 ## **Features**
 - Shorten long URLs into a compact format
 - Store and retrieve URLs using MySQL
-- Use **Docker** to run both Flask and MySQL containers seamlessly
+- Use **Docker Compose** to run both Flask and MySQL containers seamlessly
 
 ---
 
 ## **Prerequisites**
 Ensure you have the following installed on your system:
 - **Docker**: [Download and install Docker](https://www.docker.com/get-started)
+- **Docker Compose**: Typically included with Docker Desktop
 
 ---
 
-## **How to Run the Application using Docker**
+## **How to Run the Application using Docker Compose**
 
 ### **Step 1: Clone the Repository**
 ```sh
@@ -45,7 +46,7 @@ Exposes Flask on port 5000.
 
 ### **Step 4: Start the MySQL Container**
 ```sh
-docker run --name mysql-container -e MYSQL_ROOT_PASSWORD="" -e MYSQL_DATABASE=url_shortener -p 3306:3306 -d mysql:latest
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD="" -e MYSQL_DATABASE=url_shortener -p 3307:3306 -d mysql:latest
 ```
 Creates a MySQL docker container named mysql-container.
 Sets the root password.
@@ -54,7 +55,7 @@ Runs MySQL in the background (-d).
 
 ### **Step 5: Run Database Migration**
 ```sh
-docker exec -i mysql-container mysql -u root -p "had%CYM3#schcs" url_shortener < url_shortener_db.sql
+docker exec -i mysql-container mysql -u root -p "had%CYM3#schcs" url_shortener < url_shortener_db_3307.sql
 ```
 Executes the url_shortener_db.sql file to create the necessary database table
 
@@ -81,6 +82,30 @@ You should see the homepage where you can enter a long URL to shorten.
 
 ---
 
+## **Using Docker Compose**
+Follow till Step 2
+
+### **Step 3: Build and Start Containers**
+```sh
+docker-compose up --build
+```
+This single command will:
+- Build the Flask application image
+- Start MySQL and Flask containers
+- Set up the database
+- Start the application
+
+(Ensure that the database tables have been created.)
+
+### **Step 4: Access the Application**
+Open your browser and go to:
+```sh
+http://localhost:5000
+```
+You should see the homepage where you can enter a long URL to shorten.
+
+---
+
 ## **Stopping and Removing Containers**
 If you need to stop and remove the containers:
 ```sh
@@ -91,4 +116,17 @@ docker rm url-shortener-container mysql-container
 To remove the Docker image:
 ```sh
 docker rmi flask-url-shortener
+```
+
+-- OR --
+
+If using Docker Compose:
+Stop the containers using:
+```sh
+docker-compose down
+```
+
+Stop and Remove Volumes:
+```sh
+docker-compose down -v
 ```

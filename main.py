@@ -1,13 +1,3 @@
-# long url/OG url = https://google.com/absxys/kjeren
-# its short url form = http://localhost:5000/<short_code>
-# localhost = 127.0.0.1   => basically the default server
-# 5000  => port on which flask runs  =>  127.0.0.1:5000 => the port/address on which the application will run.
-# <short_code> will be the code generated => has random letters + numbers => use Sqids for this
-# the short url is to then redirect the user to the original url
-
-# since we are running the mysql docker container on port 3307, make sure we have a mysql server created on port 3307
-# and the database name is url_shortener
-
 import os
 from dotenv import load_dotenv
 import mysql.connector
