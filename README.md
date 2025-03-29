@@ -16,7 +16,7 @@ Ensure you have the following installed on your system:
 
 ---
 
-## **How to Run the Application using Docker Compose**
+## **How to Run the Application using Docker**
 
 ### **Step 1: Clone the Repository**
 ```sh
@@ -82,7 +82,7 @@ You should see the homepage where you can enter a long URL to shorten.
 
 ---
 
-## **Using Docker Compose**
+## **How to Run the Application using Docker Compose**
 Follow till Step 2
 
 ### **Step 3: Build and Start Containers**
