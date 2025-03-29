@@ -29,7 +29,7 @@ Modify the .env file with your MySQL credentials:
 ```sh
 MYSQL_HOST=mysql-container
 MYSQL_USER=root
-MYSQL_PASSWORD=""
+MYSQL_PASSWORD="<mysql password>"
 MYSQL_DATABASE=url_shortener
 ```
 Docker containers communicate via container names, so we use mysql-container instead of localhost.
@@ -46,7 +46,7 @@ Exposes Flask on port 5000.
 
 ### **Step 4: Start the MySQL Container**
 ```sh
-docker run --name mysql-container -e MYSQL_ROOT_PASSWORD="" -e MYSQL_DATABASE=url_shortener -p 3307:3306 -d mysql:latest
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD="<mysql password>" -e MYSQL_DATABASE=url_shortener -p 3307:3306 -d mysql:latest
 ```
 Creates a MySQL docker container named mysql-container.
 Sets the root password.
@@ -55,7 +55,7 @@ Runs MySQL in the background (-d).
 
 ### **Step 5: Run Database Migration**
 ```sh
-docker exec -i mysql-container mysql -u root -p "had%CYM3#schcs" url_shortener < url_shortener_db_3307.sql
+docker exec -i mysql-container mysql -u root -p "<mysql password>" url_shortener < url_shortener_db_3307.sql
 ```
 Executes the url_shortener_db.sql file to create the necessary database table
 
