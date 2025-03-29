@@ -16,7 +16,7 @@ app = Flask(__name__)
 db_config = {
     'host': os.getenv('MYSQL_HOST', 'mysql-container'),
     'user': os.getenv('MYSQL_USER', 'root'),
-    'password': os.getenv('MYSQL_PASSWORD', 'your_password'),
+    'password': os.getenv('MYSQL_PASSWORD', '<mysql password>'),
     'database': os.getenv('MYSQL_DATABASE', 'url_shortener'),
     'auth_plugin': 'mysql_native_password'
 }
