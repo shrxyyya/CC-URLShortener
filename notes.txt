@@ -14,7 +14,7 @@ For running separate mysql and flask application docker containers:
 #   The host is set to 'mysql-container' which is the name of the docker MySQL container => make necessary changes in the .env and main.py files
 #   There is no env variable for port
 #   After building the image for flask application, first run the docker container for mysql and then run the docker container for the flask application.
-#   Once, the containers are successfully up and runnning, go to http://localhost:5000 to see the application running.
+#   Once, the containers are successfully up and running, go to http://localhost:5000 to see the application running.
 
 
 
